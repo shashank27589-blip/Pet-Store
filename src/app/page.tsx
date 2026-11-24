@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { puppies, WA_URL, happyMoments, happyFamiliesTestimonial } from '@/lib/data';
+import { puppies, WA_URL } from '@/lib/data';
 import { WhatsAppIcon } from '@/components/icons';
 
 export const metadata: Metadata = {
@@ -78,7 +78,7 @@ export default function HomePage() {
             <div className="pt-2 flex flex-wrap gap-4 justify-center lg:justify-start">
               <Link
                 href="/puppies"
-                className="btn btn-primary px-8 py-4 rounded-full font-bold text-base bg-[var(--color-toffee)] text-white hover:bg-[var(--color-toffee-ink)] transition-transform active:scale-95 shadow-md"
+                className="btn btn-primary px-8 py-4 rounded-full font-bold text-base bg-[var(--color-toffee)] text-white hover:bg-[var(--color-toffee-ink)] transition-transform active:scale-95 shadow-md no-underline"
               >
                 View available puppies
               </Link>
@@ -86,7 +86,7 @@ export default function HomePage() {
                 href={WA_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-whatsapp px-8 py-4 rounded-full font-bold text-base bg-[#25d366] text-white hover:bg-[#20ba59] transition-transform active:scale-95 shadow-md flex items-center gap-2.5"
+                className="btn btn-whatsapp px-8 py-4 rounded-full font-bold text-base bg-[#25d366] text-white hover:bg-[#20ba59] transition-transform active:scale-95 shadow-md flex items-center gap-2.5 no-underline"
               >
                 <WhatsAppIcon className="w-5 h-5 fill-white" />
                 Enquire on WhatsApp
@@ -100,9 +100,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Hero Lineup / Stage with real puppy photos */}
+          {/* Hero Lineup / Stage with real puppy photo card */}
           <div className="lg:col-span-6 relative">
-            <div className="relative aspect-[4/3] max-w-lg mx-auto bg-white/70 rounded-3xl p-4 border-2 border-[var(--color-cocoa)]/15 shadow-xl">
+            <div
+              className="relative aspect-[4/3] max-w-lg mx-auto bg-white rounded-3xl p-4 border-2 border-[var(--color-cocoa)]/15 shadow-xl"
+              style={{ backgroundColor: '#ffffff', borderRadius: '1.5rem' }}
+            >
               <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[var(--color-honey-soft)]">
                 {featuredPuppies[0] && (
                   <Image
@@ -126,7 +129,7 @@ export default function HomePage() {
                   </div>
                   <Link
                     href={`/puppies/${featuredPuppies[0]?.slug}`}
-                    className="px-4 py-2 rounded-full bg-[var(--color-toffee)] text-white text-xs font-bold hover:bg-[var(--color-toffee-ink)] transition-colors"
+                    className="px-4 py-2 rounded-full bg-[var(--color-toffee)] text-white text-xs font-bold hover:bg-[var(--color-toffee-ink)] transition-colors no-underline"
                   >
                     Meet {featuredPuppies[0]?.name} →
                   </Link>
@@ -144,7 +147,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===================== FEATURED PUPPIES GRID ===================== */}
+      {/* ===================== AVAILABLE PUPPIES ===================== */}
       <section className="gutter py-20 max-w-[110rem] mx-auto" aria-labelledby="featured-title">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
@@ -157,7 +160,7 @@ export default function HomePage() {
           </div>
           <Link
             href="/puppies"
-            className="btn btn-ghost px-6 py-2.5 rounded-full border-2 border-[var(--color-cocoa)] text-sm font-bold text-[var(--color-cocoa)] hover:bg-[var(--color-peach)] transition-colors w-fit"
+            className="btn btn-ghost px-6 py-2.5 rounded-full border-2 border-[var(--color-cocoa)] text-sm font-bold text-[var(--color-cocoa)] hover:bg-[var(--color-peach)] transition-colors w-fit no-underline"
           >
             View all 20 puppies →
           </Link>
@@ -170,9 +173,19 @@ export default function HomePage() {
               <Link
                 key={pup.id}
                 href={`/puppies/${pup.slug}`}
-                className="group bg-white border-2 border-[var(--color-cocoa)]/15 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                className="group bg-white border-2 border-[var(--color-cocoa)]/15 rounded-3xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col no-underline text-inherit hover:no-underline"
+                style={{
+                  backgroundColor: '#ffffff',
+                  borderRadius: '1.5rem',
+                  textDecoration: 'none',
+                  color: 'inherit',
+                }}
               >
-                <div className="relative aspect-square overflow-hidden bg-[var(--color-honey-soft)]">
+                {/* Image Box */}
+                <div
+                  className="relative aspect-square overflow-hidden bg-[var(--color-honey-soft)] rounded-t-[1.35rem]"
+                  style={{ aspectRatio: '1 / 1', position: 'relative', overflow: 'hidden', backgroundColor: '#fef7e8' }}
+                >
                   <Image
                     src={imgSrc}
                     alt={`${pup.name}, ${pup.breed}`}
@@ -182,19 +195,20 @@ export default function HomePage() {
                     unoptimized
                   />
                   <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/90 text-[var(--color-wa-green)] shadow-xs flex items-center gap-1">
-                      <span className="size-2 rounded-full bg-[var(--color-wa-green)] animate-pulse" />
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/90 text-[#25d366] shadow-xs flex items-center gap-1">
+                      <span className="size-2 rounded-full bg-[#25d366] animate-pulse" />
                       Available
                     </span>
                   </div>
                   {pup.source === 'imported' && (
-                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[0.7rem] font-bold bg-[var(--color-honey)] text-[var(--color-toffee-ink)] border border-[var(--color-toffee)]/30 z-10">
+                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[0.7rem] font-bold bg-[#fff1d8] text-[#9e5c10] border border-[#d4852a]/30 z-10">
                       ✈️ Imported
                     </span>
                   )}
                 </div>
 
-                <div className="p-5 flex-1 flex flex-col justify-between">
+                {/* Card Body */}
+                <div className="p-5 flex-1 flex flex-col justify-between" style={{ padding: '1.25rem' }}>
                   <div>
                     <span className="text-xs font-bold uppercase tracking-wider text-[var(--color-toffee)] block mb-1">
                       {pup.breed}
@@ -239,7 +253,13 @@ export default function HomePage() {
               <Link
                 key={name}
                 href={`/puppies?breed=${encodeURIComponent(slug)}`}
-                className="bg-white border-2 border-[var(--color-cocoa)]/10 rounded-2xl p-5 text-center hover:scale-105 hover:border-[var(--color-toffee)] transition-all shadow-xs"
+                className="bg-white border-2 border-[var(--color-cocoa)]/15 rounded-2xl p-5 text-center hover:scale-105 hover:border-[var(--color-toffee)] transition-all shadow-sm no-underline text-inherit hover:no-underline block"
+                style={{
+                  backgroundColor: '#ffffff',
+                  borderRadius: '1rem',
+                  textDecoration: 'none',
+                  color: '#2a170e',
+                }}
               >
                 <div className="text-4xl mb-2">{emoji}</div>
                 <div className="font-bold text-base text-[var(--color-cocoa)] mb-1">{name}</div>
@@ -263,7 +283,10 @@ export default function HomePage() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Way 1: Dubai Showroom */}
-          <div className="bg-[var(--color-milk)] border-2 border-[var(--color-cocoa)]/15 rounded-3xl p-8 shadow-sm">
+          <div
+            className="bg-white border-2 border-[var(--color-cocoa)]/15 rounded-3xl p-8 shadow-sm"
+            style={{ backgroundColor: '#ffffff', borderRadius: '1.5rem' }}
+          >
             <span className="text-4xl block mb-3">🏪</span>
             <span className="text-xs font-bold uppercase tracking-wider text-[#2d6622] bg-[var(--color-grass)] px-3 py-1 rounded-full">
               Downtown Dubai
@@ -276,14 +299,17 @@ export default function HomePage() {
             </p>
             <Link
               href="/puppies"
-              className="btn btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm bg-[var(--color-toffee)] text-white hover:bg-[var(--color-toffee-ink)] transition-colors"
+              className="btn btn-primary inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm bg-[var(--color-toffee)] text-white hover:bg-[var(--color-toffee-ink)] transition-colors no-underline"
             >
               Browse showroom puppies →
             </Link>
           </div>
 
           {/* Way 2: Imported for You */}
-          <div className="bg-[var(--color-milk)] border-2 border-[var(--color-cocoa)]/15 rounded-3xl p-8 shadow-sm">
+          <div
+            className="bg-white border-2 border-[var(--color-cocoa)]/15 rounded-3xl p-8 shadow-sm"
+            style={{ backgroundColor: '#ffffff', borderRadius: '1.5rem' }}
+          >
             <span className="text-4xl block mb-3">✈️</span>
             <span className="text-xs font-bold uppercase tracking-wider text-[var(--color-sky-deep)] bg-[var(--color-sky-soft)] px-3 py-1 rounded-full">
               Europe · Korea · Dubai
@@ -298,7 +324,7 @@ export default function HomePage() {
               href={WA_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-whatsapp inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm bg-[#25d366] text-white hover:bg-[#20ba59] transition-colors"
+              className="btn btn-whatsapp inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-sm bg-[#25d366] text-white hover:bg-[#20ba59] transition-colors no-underline"
             >
               <WhatsAppIcon className="w-4 h-4 fill-white" />
               Enquire about imported breeds →
@@ -309,7 +335,10 @@ export default function HomePage() {
 
       {/* ===================== TICKETS GONE HOME HIGHLIGHT ===================== */}
       <section className="gutter py-16 max-w-[110rem] mx-auto">
-        <div className="bg-[var(--color-peach)]/60 border-2 border-[var(--color-cocoa)]/20 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
+        <div
+          className="bg-[var(--color-peach)]/60 border-2 border-[var(--color-cocoa)]/20 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm"
+          style={{ borderRadius: '1.5rem' }}
+        >
           <div className="space-y-2 max-w-2xl">
             <span className="font-scrawl text-2xl text-[var(--color-toffee-ink)] font-bold">
               tickets home
@@ -323,7 +352,7 @@ export default function HomePage() {
           </div>
           <Link
             href="/gone-home"
-            className="btn btn-primary px-8 py-3.5 rounded-full font-bold text-sm bg-[var(--color-cocoa)] text-white hover:bg-[var(--color-brown-mid)] transition-transform active:scale-95 whitespace-nowrap"
+            className="btn btn-primary px-8 py-3.5 rounded-full font-bold text-sm bg-[var(--color-cocoa)] text-white hover:bg-[var(--color-brown-mid)] transition-transform active:scale-95 whitespace-nowrap no-underline"
           >
             Visit Gone Home Wall 🎟️
           </Link>
@@ -343,7 +372,11 @@ export default function HomePage() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {homeTestimonials.map((t, idx) => (
-            <div key={idx} className="bg-white border-2 border-[var(--color-cocoa)]/10 rounded-3xl p-7 shadow-sm flex flex-col justify-between">
+            <div
+              key={idx}
+              className="bg-white border-2 border-[var(--color-cocoa)]/10 rounded-3xl p-7 shadow-sm flex flex-col justify-between"
+              style={{ backgroundColor: '#ffffff', borderRadius: '1.5rem' }}
+            >
               <div>
                 <div className="text-[var(--color-amber)] text-lg mb-3">
                   {'★'.repeat(t.stars)}
@@ -363,7 +396,7 @@ export default function HomePage() {
         <div className="mt-10 text-center">
           <Link
             href="/happy-families"
-            className="btn btn-ghost px-6 py-2.5 rounded-full border border-[var(--color-cocoa)] text-sm font-bold text-[var(--color-cocoa)] hover:bg-[var(--color-peach)] transition-colors"
+            className="btn btn-ghost px-6 py-2.5 rounded-full border border-[var(--color-cocoa)] text-sm font-bold text-[var(--color-cocoa)] hover:bg-[var(--color-peach)] transition-colors no-underline inline-block"
           >
             See all 64 happy family moments →
           </Link>
@@ -385,7 +418,7 @@ export default function HomePage() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/puppies"
-              className="btn btn-primary px-8 py-3.5 rounded-full font-bold text-sm bg-[var(--color-peach)] text-[var(--color-cocoa)] hover:bg-white transition-transform active:scale-95 shadow-md"
+              className="btn btn-primary px-8 py-3.5 rounded-full font-bold text-sm bg-[var(--color-peach)] text-[var(--color-cocoa)] hover:bg-white transition-transform active:scale-95 shadow-md no-underline"
             >
               Browse available puppies
             </Link>
@@ -393,14 +426,14 @@ export default function HomePage() {
               href={WA_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-whatsapp px-8 py-3.5 rounded-full font-bold text-sm bg-[#25d366] text-white hover:bg-[#20ba59] transition-transform active:scale-95 shadow-md flex items-center gap-2"
+              className="btn btn-whatsapp px-8 py-3.5 rounded-full font-bold text-sm bg-[#25d366] text-white hover:bg-[#20ba59] transition-transform active:scale-95 shadow-md flex items-center gap-2 no-underline"
             >
               <WhatsAppIcon className="w-4 h-4 fill-white" />
               Chat on WhatsApp
             </a>
             <Link
               href="/contact"
-              className="px-6 py-3.5 rounded-full font-bold text-sm border-2 border-white/40 text-white hover:border-white transition-colors"
+              className="px-6 py-3.5 rounded-full font-bold text-sm border-2 border-white/40 text-white hover:border-white transition-colors no-underline"
             >
               Visit our showroom
             </Link>

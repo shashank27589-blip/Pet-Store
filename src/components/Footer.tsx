@@ -46,14 +46,14 @@ export default function Footer() {
               href={WA_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-[#25d366] text-white hover:bg-[#20ba59] transition-transform active:scale-95 shadow-md"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-[#25d366] text-white hover:bg-[#20ba59] transition-transform active:scale-95 shadow-md no-underline"
             >
               <span>💬</span>
               WhatsApp us
             </a>
             <Link
               href="/puppies"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-[#fffdf8]/10 text-[#fffdf8] hover:bg-[#fffdf8]/20 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-[#fffdf8]/10 text-[#fef7e8] hover:bg-[#fffdf8]/20 hover:text-white transition-colors no-underline"
             >
               See all puppies
             </Link>
@@ -64,41 +64,25 @@ export default function Footer() {
         <nav aria-label="Footer" className="md:col-span-3 md:col-start-7">
           <h2 className="font-scrawl text-2xl text-[#f2be6b] font-bold">Explore</h2>
           <ul className="mt-4 space-y-2.5 text-base">
-            <li>
-              <Link className="font-semibold text-[#fffdf8]/90 underline-offset-4 hover:text-[#f2be6b] hover:underline" href="/puppies">
-                Available puppies
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-[#fffdf8]/90 underline-offset-4 hover:text-[#f2be6b] hover:underline" href="/gone-home">
-                Gone home
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-[#fffdf8]/90 underline-offset-4 hover:text-[#f2be6b] hover:underline" href="/happy-families">
-                Happy families
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-[#fffdf8]/90 underline-offset-4 hover:text-[#f2be6b] hover:underline" href="/how-it-works">
-                How it works
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-[#fffdf8]/90 underline-offset-4 hover:text-[#f2be6b] hover:underline" href="/how-it-works#delivery">
-                Delivery &amp; collection
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-[#fffdf8]/90 underline-offset-4 hover:text-[#f2be6b] hover:underline" href="/faq">
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <Link className="font-semibold text-[#fffdf8]/90 underline-offset-4 hover:text-[#f2be6b] hover:underline" href="/contact">
-                Visit &amp; contact
-              </Link>
-            </li>
+            {[
+              { href: '/puppies', label: 'Available puppies' },
+              { href: '/gone-home', label: 'Gone home' },
+              { href: '/happy-families', label: 'Happy families' },
+              { href: '/how-it-works', label: 'How it works' },
+              { href: '/how-it-works#delivery', label: 'Delivery & collection' },
+              { href: '/faq', label: 'FAQ' },
+              { href: '/contact', label: 'Visit & contact' },
+            ].map(({ href, label }) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className="font-medium text-[#fef7e8]/90 hover:text-white no-underline hover:underline transition-colors block py-0.5"
+                  style={{ color: '#fef7e8' }}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
@@ -107,16 +91,26 @@ export default function Footer() {
           <h2 className="font-scrawl text-2xl text-[#f2be6b] font-bold">Say hello</h2>
           <ul className="mt-4 space-y-2.5 text-base text-[#fffdf8]/90">
             <li>
-              <a className="font-semibold hover:text-[#f2be6b]" href={WA_URL} target="_blank" rel="noopener noreferrer">
+              <a
+                className="font-medium text-[#fef7e8]/90 hover:text-white no-underline hover:underline block py-0.5"
+                style={{ color: '#fef7e8' }}
+                href={WA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 WhatsApp +971 50 000 0000
               </a>
             </li>
             <li>
-              <a className="break-all hover:text-[#f2be6b]" href="mailto:hello@teddypups.ae">
+              <a
+                className="break-all font-medium text-[#fef7e8]/90 hover:text-white no-underline hover:underline block py-0.5"
+                style={{ color: '#fef7e8' }}
+                href="mailto:hello@teddypups.ae"
+              >
                 hello@teddypups.ae
               </a>
             </li>
-            <li className="text-[#fffdf8]/80">
+            <li className="text-[#fef7e8]/80 py-0.5">
               Downtown Dubai, United Arab Emirates
             </li>
           </ul>
@@ -128,7 +122,7 @@ export default function Footer() {
                   href="https://www.instabizweb.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-9 items-center rounded-full border border-[#fffdf8]/30 px-3.5 text-xs font-semibold hover:border-[#f2be6b] hover:text-[#f2be6b] transition-colors"
+                  className="inline-flex h-9 items-center rounded-full border border-[#fffdf8]/30 px-3.5 text-xs font-semibold text-[#fef7e8] hover:border-[#f2be6b] hover:text-[#f2be6b] transition-colors no-underline"
                 >
                   {platform}
                 </a>
@@ -140,7 +134,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="gutter relative mx-auto mt-14 flex max-w-[110rem] flex-col items-start justify-between gap-4 border-t border-[#fffdf8]/15 pt-6 text-sm text-[#fffdf8]/60 md:flex-row md:items-center">
-        <span className="flex items-center gap-3 font-medium">
+        <span className="flex items-center gap-3 font-medium text-[#fef7e8]/80">
           <Image
             src="/brand/logo.png"
             alt="TeddyPups Logo"
@@ -150,7 +144,7 @@ export default function Footer() {
           />
           © {new Date().getFullYear()} TeddyPups U.A.E.
         </span>
-        <span className="font-scrawl text-xl text-[#f2be6b]/90">every puppy is family</span>
+        <span className="font-scrawl text-xl text-[#f2be6b]">every puppy is family</span>
       </div>
     </footer>
   );

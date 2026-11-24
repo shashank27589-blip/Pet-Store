@@ -141,9 +141,18 @@ export default function PuppiesClient() {
                 <Link
                   key={pup.id}
                   href={`/puppies/${pup.slug}`}
-                  className="tp-puppy-card group bg-white border-2 border-[var(--color-cocoa)]/15 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                  className="tp-puppy-card group bg-white border-2 border-[var(--color-cocoa)]/15 rounded-3xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col no-underline text-inherit hover:no-underline"
+                  style={{
+                    backgroundColor: '#ffffff',
+                    borderRadius: '1.5rem',
+                    textDecoration: 'none',
+                    color: 'inherit',
+                  }}
                 >
-                  <div className="tp-puppy-card__photo relative aspect-square overflow-hidden bg-[var(--color-honey)]/30">
+                  <div
+                    className="tp-puppy-card__photo relative aspect-square overflow-hidden bg-[var(--color-honey)]/30 rounded-t-[1.35rem]"
+                    style={{ aspectRatio: '1 / 1', position: 'relative', overflow: 'hidden', backgroundColor: '#fef7e8' }}
+                  >
                     <Image
                       src={imgSrc}
                       alt={`${pup.name}, ${pup.breed}`}

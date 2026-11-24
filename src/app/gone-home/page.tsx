@@ -65,7 +65,11 @@ export default function GoneHomePage() {
                 className="tp-ticket"
                 style={{ '--tilt': `${tilt.toFixed(1)}deg` } as React.CSSProperties}
               >
-                <Link href={ticket.href} className="tp-ticket__link group">
+                <Link
+                  href={ticket.href}
+                  className="tp-ticket__link group no-underline text-inherit hover:no-underline"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
                   <span className="tp-ticket__main">
                     <span className="tp-ticket__photo">
                       <Image
